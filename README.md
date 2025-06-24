@@ -1,124 +1,65 @@
-# 개요
+# 🔰 Programmers Badge Generator
 
-깃허브 프로필을 꾸미다가 백준 티어는 뱃지가 있는데 프로그래머스는 없어서 아쉬웠다. 그러던 중 https://github.com/libtv/github-programmers-rank 의 레포를 발견하고 코드 분석 후 자바로 언어를 변경하여 뱃지 생성 프로젝트를 만들었다.
+[프로그래머스](https://programmers.co.kr/) 문제 풀이 현황을 보여주는 **GitHub 배지 프로젝트**<br>
+프로그래머스에서 푼 문제 실적을 GitHub 프로필에 배지 형태로 시각화해줍니다. 배지는 **매주 자동으로 갱신**되며, 원버튼 수동 갱신도 지원합니다.<br><br>
 
-하지만 프로그래머스에서 문제를 풀고 바로 뱃지가 반영되기를 원해서 백준 허브와 연동해서 프로그래머스에서 문제를 풀면 바로 자동으로 뱃지가 생성 및 업데이트 되고 이를 깃허브 프로필에서 볼 수 있도록 하였다.
+## ♻️ 디자인 개선 및 절차 간소화
 
+[tomy8964/Programmers_Badge_Generator](https://github.com/tomy8964/Programmers_Badge_Generator?tab=readme-ov-file)를 기반으로 디자인을 새롭게 구성하고, 배지 생성 절차를 간소화하였습니다.
 
-# 전제 조건
+|                      이전 배지 이미지                       |                     현재 배지 이미지                      |
+| :---------------------------------------------------------: | :-------------------------------------------------------: |
+| ![Previous svg design](./readme-assets/prev_svg_design.svg) | ![Current svg design](./readme-assets/cur_svg_design.svg) |
 
-[백준 허브](https://bit.ly/3XR66UE)가 깔려서 프로그래머스에서 문제를 풀면 깃허브에 자동으로 커밋되는 레포가 있어야 한다.
+<br>
 
-# 작동 원리
+## 🚀 프로젝트 설정 (Project Setup)
 
-1. 프로그래머스에서 문제를 푼다.
-2. 백준 허브를 통해 지정한 레포에 커밋이 된다.
-3. `GitHub Action` 을 통해 프로그래머스 뱃지 생성 프로젝트가 `dispatch` 되면서 뱃지가 생성 및 업데이트 된다.
-![](https://velog.velcdn.com/images/tomy8964/post/569d2ea8-6d3b-4154-a733-5ef85cc844de/image.png)
-4. 깃허브 프로필에 프로그래머스 뱃지가 반영된다. `![Programmers Badge](https://raw.githubusercontent.com/{깃허브 아이디}/Programmers_Badge_Generator/main/result/result.svg?cache_buster=1)`
+1. 이 레포지토리를 포크합니다.  
+   → **Fork this repository.**
 
-# How to install
+2. 포크한 레포지토리의 "Actions" 탭으로 이동해 "Enable" 버튼을 클릭합니다.  
+   → **Open the "Actions" tab of your fork and click the "Enable" button.**
 
-## 1. [Fork Project - 프로젝트를 포크합니다.](https://github.com/tomy8964/Programmers_Badge_Generator) (링크 클릭시 이동)
+3. 환경 변수를 등록합니다.  
+   → **Set up environment variables.**
 
-![](https://velog.velcdn.com/images/tomy8964/post/76302289-438a-44a3-8092-e4777515b97a/image.png)
+   - 레포지토리 Settings > Secrets and variables > Actions 로 이동하여 아래 값을 등록합니다.  
+     → **Go to Settings > Secrets and variables > Actions and add the following variables:**
 
-![](https://velog.velcdn.com/images/tomy8964/post/7513b3c4-544a-4cd4-a92c-bf6c12a52c92/image.png)
+     - `GH_PAT`: GitHub Personal Access Token  
+       → **GitHub Personal Access Token**
+     - `PROGRAMMERS_TOKEN_ID`: 프로그래머스 계정 이메일  
+       → **Your Programmers account email**
+     - `PROGRAMMERS_TOKEN_PW`: 프로그래머스 계정 비밀번호  
+       → **Your Programmers account password**
 
-## 2. Apply Secrets - 시크릿에 키를 등록합니다.
+4. 배지가 정상적으로 생성되었는지 확인합니다.  
+   → **Check if the badge is generated correctly.**
 
-`Settings - Secrets and variables - Actions`
+   - 포크한 레포지토리의 `result` 폴더에 `result.svg` 파일이 생성되어 있는지 확인하고,  
+      자신의 프로그래머스 정보와 일치하는지 확인합니다.  
+     → **Go to the `result` folder in your fork and verify that `result.svg` matches your data.**
 
-![](https://velog.velcdn.com/images/tomy8964/post/76711823-cf5c-4316-88e0-5a31e06ff654/image.png)
+5. GitHub 프로필에 프로그래머스 배지를 등록합니다.  
+   → **Add the Programmers badge to your GitHub profile.**
 
-- 커밋시 사용하기 위한 값
-  - `GH_PAT` : `GitHub Personal Access Token` 값 입니다. (처음 한번만 볼 수 있기 때문에 복사해서 메모장에 붙여둡니다.)
-    - 발급 방법
-      1. 오른쪽 위의 내 프로필 사진 클릭
-      
-      2. `Settings` 클릭
-      3. 왼쪽 제일 아래에 있는 `Developer settings` 클릭
-      4. `Personal access tokens` - `Tokens (classic)` 클릭
-      5. 오른쪽 위의 `Generate new token(classic)` 클릭
-      6. 기억할 토큰 이름 `Note` 에 입력
-      7. `Expiration` 만료 기간 지정
-      8. `Select scopes` - `repo` `workflow` 선택 ![](https://velog.velcdn.com/images/tomy8964/post/b8b870b4-1bfa-4663-8ddc-92f5f7bc44fa/image.png)
-      9. `generate token` 클릭 후 토큰 값 복사해서 메모장에 붙여놓기
-  - `GIT_EMAIL` : 깃허브 이메일
-  
-  - `GIT_NAME` : 깃허브 이름
-- 프로그래머스 정보를 가져오기 위한 값
-  - `PROGRAMMERS_TOKEN_ID` : 프로그래머스 아이디 값
-  
-  - `PROGRAMMERS_TOKEN_PW` : 프로그래머스 패스워드 값
+   - GitHub 프로필에 해당하는 레포지토리(`{your GitHub ID}.github.io` 또는 `{your GitHub ID}`)의 `README.md` 파일에 다음 코드를 삽입하세요:  
+     → **Edit the `README.md` of your GitHub profile repo and insert the following:**
 
-## 3. set Github Action - 깃허브 액션을 설정합니다.
+     ```
+     ![Programmers Badge](https://raw.githubusercontent.com/{your-github-id}/programmers-badge-generator/main/result/result.svg)
+     ```
 
-1. 화면 위쪽 가운데 있는 `Actions` 클릭
+6. 프로필에서 배지가 잘 표시되는지 확인합니다.  
+    → **Verify that the badge is displayed correctly on your profile.**
+   <br><br>
 
-2. `understand` 클릭
+## 🔄 배지 수동 갱신 (Manually Refreshing the Badge)
 
-3. 왼쪽에 `programmers_badge_action` 클릭 후 `Enable workflow` 클릭![](https://velog.velcdn.com/images/tomy8964/post/8c2381eb-5cd7-4562-9123-00c05f243f96/image.png)
+배지를 수동으로 갱신하고 싶다면,  
+포크한 레포지토리의 **Actions** 탭으로 이동하여 가장 최근에 실행된 워크플로를 선택한 후 우측 상단의 **Re-run jobs** 버튼을 클릭하세요.
 
-## 4. 백준 허브로 코딩테스트 문제 자동 커밋되는 레포로 이동
-1. `Settings` 클릭
-2. `Secrets and variables` - `Actions` 에 `GH_PAT` 값 추가 ![](https://velog.velcdn.com/images/tomy8964/post/d6bb33f7-e81b-4760-a2ad-ea76d8639749/image.png)
-
-3. `Actions` 클릭
-4. `set up a workflow yourself` 클릭 ![](https://velog.velcdn.com/images/tomy8964/post/9e008204-db81-4367-8fad-d72ca84e0b4a/image.png)
-5. 밑의 `dispatch-workflow.yml` 복붙 후 `yml` 내용 중 깃허브 이름 부분 변경
-
-```yml
-name: dispatch-workflow
-
-on:
- push:
-   branches:
-     - main
-
-jobs:
- dispatch:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Trigger repository dispatch
-       uses: peter-evans/repository-dispatch@v1
-       with:
-         token: ${{ secrets.GH_PAT }}
-         repository: {자기 깃허브 이름}/Programmers_Badge_Generator
-         event-type: trigger-workflow
-```
-![](https://velog.velcdn.com/images/tomy8964/post/db5a144a-4cb0-4e50-894e-1f3d2a652d68/image.png)
-
-
-6. 오른쪽 위의 `Commit changes..` 클릭 후 커밋
-
-7. `Actions` 클릭 후 잘 돌아가는지 확인![](https://velog.velcdn.com/images/tomy8964/post/d2119fa9-155b-4050-a690-c56d798da0a0/image.png)
-
-
-## 5. 프로그래머스 문제 풀기
-
-1. 프로그래머스 접속 후 아무 문제 풀기
-![](https://velog.velcdn.com/images/tomy8964/post/9947050f-50b8-4ed1-8bfe-4bd6f5ba71df/image.png)
-
-2. 백준 허브 커밋 후 자동으로 `dispatch` 되는지 확인![](https://velog.velcdn.com/images/tomy8964/post/56091dfa-6e1f-4d2b-b137-1ad269b13390/image.png)
-
-## 6. 뱃지 생성 확인
-
-1. 포크했던 `Programmers_Badge_Generator` 레포로 이동
-
-2. `result` 폴더에 `result.svg` 생성된 결과 자신의 정보와 맞는지 확인![](https://velog.velcdn.com/images/tomy8964/post/c05affa9-38dc-476b-a9f0-500329c1ec42/image.png)
-
-## 7. 깃허브 프로필에 프로그래머스 뱃지 등록
-
-1. 자신의 이름과 같은 레포의 `README.md` 수정
-
-2. `![Programmers Badge](https://raw.githubusercontent.com/{자기신 깃허브 아이디}/Programmers_Badge_Generator/main/result/result.svg)` 삽입![](https://velog.velcdn.com/images/tomy8964/post/85249ad1-3262-4767-a063-c346541f536f/image.png)
-
-
-3. 뱃지 생성 확인![](https://velog.velcdn.com/images/tomy8964/post/ce269ec3-c304-4b3b-a0a6-3473696f772b/image.png)
-
-## 8. 프로그래머스에서 문제를 풀면 자동으로 뱃지가 업데이트된다.
-
-![](https://velog.velcdn.com/images/tomy8964/post/fa8587c5-51ef-46aa-b6c6-f9473925adbb/image.png)
-
-> 이 프로젝트를 개선하고 싶으시거나 문의 사항 있으면 댓글과 `pull request` 해주시면 감사하겠습니다.
+→ **To manually refresh the badge**,  
+go to the **Actions** tab of your forked repository,  
+select the most recent workflow run, and click the **Re-run jobs** button in the top right corner.
