@@ -77,37 +77,52 @@ public class Main {
                 Object solved = ((Map<String, Object>) myData.get("codingTest")).get("solved");
                 Object rank = ((Map<String, Object>) myData.get("ranking")).get("rank");
 
-                // 데이터를 String 타입으로 변환하여 안전하게 사용
+                // 닉네임 변수 예시 (실제 데이터에 맞게 수정 필요)
+                String nickname = myData.getOrDefault("nickname", "gyudol").toString();
                 String svgContent = String.format(
                         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                                 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
-                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"320px\" height=\"170px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
+                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"370px\" height=\"210px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
                                 "<defs>" +
                                 "<linearGradient id=\"cardGradient\" x1=\"0%%\" y1=\"0%%\" x2=\"100%%\" y2=\"0%%\">" +
-                                "<stop offset=\"0%%\" style=\"stop-color:#87CEEB;stop-opacity:1\" />" +
-                                "<stop offset=\"100%%\" style=\"stop-color:#00008B;stop-opacity:1\" />" +
+                                "<stop offset=\"0%%\" style=\"stop-color:#a8d8f8;stop-opacity:1\" />" +
+                                "<stop offset=\"100%%\" style=\"stop-color:#3a5fc8;stop-opacity:1\" />" +
                                 "</linearGradient>" +
                                 "</defs>" +
                                 "<style>" +
-                                ".card-bg { stroke: #dbe3ec; stroke-width: 1; rx: 12; }" +
-                                ".header { font-size: 1.25rem; font-weight: bold; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; alignment-baseline: middle; }" +
-                                ".info-line { font-size: 1.02rem; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".desc { fill: #ffffff; font-size: 1.08rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.9; }" +
-                                ".desc-2 { fill: #ffffff; font-size: 0.95rem; font-weight: bold; font-family: inherit; opacity: 0.7; }" +
+                                ".card-bg { stroke: #dbe3ec; stroke-width: 1; rx: 16; }" +
+                                ".header { font-size: 1.35rem; font-weight: bold; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; alignment-baseline: middle; }" +
+                                ".nickname { font-size: 1.15rem; font-weight: bold; fill: #ffffff; font-family: inherit; margin-left: 10px; animation: twinkling 2.5s ease-in-out infinite; }" +
+                                ".info-line { font-size: 1.08rem; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
+                                ".info-label { font-size: 1.08rem; fill: #ffffff; font-family: inherit; font-weight: 500; }" +
+                                ".desc { fill: #ffffff; font-size: 1.18rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.95; }" +
+                                ".desc-2 { fill: #ffffff; font-size: 1.05rem; font-weight: bold; font-family: inherit; opacity: 0.7; }" +
                                 "@keyframes twinkling { 0%% { opacity: 1; } 40%% { opacity: 1; } 50%% { opacity: 0.4; } 60%% { opacity: 1; } 100%% { opacity: 1; } }" +
                                 "</style>" +
                                 // 카드 배경
-                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"310\" height=\"160\" rx=\"12\" fill=\"url(#cardGradient)\"/>" +
-                                // 상단 텍스트(로고 제거)
-                                "<text x=\"22\" y=\"45\" class=\"header\" text-anchor=\"start\">Programmers</text>" +
-                                // 정보 텍스트(자연스러운 줄 간격, 가운데 정렬)
+                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"360\" height=\"200\" rx=\"16\" fill=\"url(#cardGradient)\"/>" +
+                                // 좌측 logo 이미지 (크게, Programmers 아래)
+                                "<image x=\"30\" y=\"60\" width=\"60\" height=\"60\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAOVBMVEVHcEwgKz4gKz0gKz0VIzc3QE9LU2F3fYddZG+MkZkACiebn6Xg4eMAABgHGjH////P0NSvsrf19vfZo52CAAAAA3RSTlMASNfaYUakAAAAu0lEQVR4AX3TURKDMAhFURUCkSBG97/YJrZOYZr6fs/cwY84TfMCwy1zM/i7eYpdbCdwwxQ1YKI0RgJEIhoiMefUMA3LlXnlK0URjIjcsBSmJFmVNxEzvNE69uWyt6nWo/AbTdJ6HLWqnvtlBHaXuO5xiN+bmM5gKv6DLKbFPIJkdQgQEFCo1I8dErGzbeouOnSHq8EA5ewZC3h0Yc0bgkcXciCHxjuZl4A1WkDkaAEB4WfPT/PxUT/9Di8WvxDIKmTCowAAAABJRU5ErkJggg==\"/>" +
+                                // 상단 텍스트(좌측, 닉네임 오른쪽)
+                                "<text x=\"110\" y=\"45\" class=\"header\" text-anchor=\"start\">Programmers</text>" +
+                                "<text x=\"240\" y=\"45\" class=\"nickname\" text-anchor=\"start\">%s</text>" +
+                                // 정보 텍스트(라벨과 값 간격 넓힘, 가운데 정렬, 아래쪽 패딩)
                                 "<g>" +
-                                "<text x=\"160\" y=\"80\" class=\"info-line\" text-anchor=\"middle\">Level <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> level</tspan></text>" +
-                                "<text x=\"160\" y=\"105\" class=\"info-line\" text-anchor=\"middle\">Rate <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> pt</tspan></text>" +
-                                "<text x=\"160\" y=\"130\" class=\"info-line\" text-anchor=\"middle\">Solved <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> problems</tspan></text>" +
-                                "<text x=\"160\" y=\"155\" class=\"info-line\" text-anchor=\"middle\">Rank <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> th</tspan></text>" +
+                                "<text x=\"90\" y=\"110\" class=\"info-label\" text-anchor=\"end\">Level</text>" +
+                                "<text x=\"120\" y=\"110\" class=\"desc\" text-anchor=\"start\">%s</text>" +
+                                "<text x=\"170\" y=\"110\" class=\"desc-2\" text-anchor=\"start\">level</text>" +
+                                "<text x=\"90\" y=\"140\" class=\"info-label\" text-anchor=\"end\">Rate</text>" +
+                                "<text x=\"120\" y=\"140\" class=\"desc\" text-anchor=\"start\">%s</text>" +
+                                "<text x=\"170\" y=\"140\" class=\"desc-2\" text-anchor=\"start\">pt</text>" +
+                                "<text x=\"90\" y=\"170\" class=\"info-label\" text-anchor=\"end\">Solved</text>" +
+                                "<text x=\"120\" y=\"170\" class=\"desc\" text-anchor=\"start\">%s</text>" +
+                                "<text x=\"170\" y=\"170\" class=\"desc-2\" text-anchor=\"start\">problems</text>" +
+                                "<text x=\"90\" y=\"200\" class=\"info-label\" text-anchor=\"end\">Rank</text>" +
+                                "<text x=\"120\" y=\"200\" class=\"desc\" text-anchor=\"start\">%s</text>" +
+                                "<text x=\"170\" y=\"200\" class=\"desc-2\" text-anchor=\"start\">th</text>" +
                                 "</g>" +
                                 "</svg>",
+                        nickname,
                         level != null ? level.toString() : "",
                         score != null ? score.toString() : "",
                         solved != null ? solved.toString() : "",
