@@ -79,7 +79,7 @@ public class Main {
                 Object rank = ((Map<String, Object>) myData.get("ranking")).get("rank");
 
                 // 닉네임 변수 예시 (실제 데이터에 맞게 수정 필요)
-                String nickname = myData.getOrDefault("nickname", "gyudol").toString();
+                String nickname = myData.getOrDefault("name", "gyudol").toString();
 
                 // 숫자 콤마 포맷 적용
                 NumberFormat nf = NumberFormat.getInstance();
