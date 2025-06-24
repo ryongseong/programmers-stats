@@ -81,33 +81,33 @@ public class Main {
                 String svgContent = String.format(
                         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                                 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
-                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"551px\" height=\"217px\" style=\"background:#f5f7fa; shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
+                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"551px\" height=\"217px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
                                 "<style>" +
                                 ".title { fill: #222b3a; font-size: 1rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
                                 ".desc { fill: #0078ff; font-size: 2.5rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
                                 ".desc-2 { fill: #6b7684; font-size: 1rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".card-bg { fill: #e9eef6; stroke: #dbe3ec; stroke-width: 1; rx: 12; }" +
-                                ".text, .desc { animation: twinkling 4s ease-in-out infinite; }" +
-                                "@keyframes twinkling { 40%% { opacity: 1; } 50%% { opacity: 0.5; } 60%% { opacity: 1; } 70%% { opacity: 0.5; } 80%% { opacity: 1; } }" +
+                                ".card-bg { fill: #e9eef6; stroke: #dbe3ec; stroke-width: 1; rx: 18; }" +
                                 "</style>" +
-                                // 카드 4개 배경 (좌우 패딩 20px로 맞춤)
-                                "<rect class=\"card-bg\" x=\"20\" y=\"10\" width=\"245\" height=\"95\" rx=\"12\"/>" +
-                                "<rect class=\"card-bg\" x=\"286\" y=\"10\" width=\"245\" height=\"95\" rx=\"12\"/>" +
-                                "<rect class=\"card-bg\" x=\"20\" y=\"112\" width=\"245\" height=\"95\" rx=\"12\"/>" +
-                                "<rect class=\"card-bg\" x=\"286\" y=\"112\" width=\"245\" height=\"95\" rx=\"12\"/>" +
-                                // 텍스트 (좌표도 카드에 맞게 조정)
-                                "<text text-anchor=\"middle\" x=\"110\" y=\"45\" class=\"title\" >정복 중인 레벨</text>" +
-                                "<text text-anchor=\"middle\" x=\"90\" y=\"85\" class=\"desc\" >%s</text>" +
-                                "<text text-anchor=\"middle\" x=\"150\" y=\"85\" class=\"desc-2\" >레벨</text>" +
-                                "<text text-anchor=\"middle\" x=\"380\" y=\"45\" class=\"title\" >현재 점수</text>" +
-                                "<text text-anchor=\"middle\" x=\"400\" y=\"85\" class=\"desc\" >%s</text>" +
-                                "<text text-anchor=\"middle\" x=\"480\" y=\"85\" class=\"desc-2\" >점</text>" +
-                                "<text text-anchor=\"middle\" x=\"110\" y=\"150\" class=\"title\" >해결한 코딩 테스트</text>" +
-                                "<text text-anchor=\"middle\" x=\"90\" y=\"190\" class=\"desc\" >%s</text>" +
-                                "<text text-anchor=\"middle\" x=\"150\" y=\"190\" class=\"desc-2\" >문제</text>" +
-                                "<text text-anchor=\"middle\" x=\"380\" y=\"150\" class=\"title\" >나의 랭킹</text>" +
-                                "<text text-anchor=\"middle\" x=\"400\" y=\"190\" class=\"desc\" >%s</text>" +
-                                "<text text-anchor=\"middle\" x=\"480\" y=\"190\" class=\"desc-2\" >위</text>" +
+                                // 카드 1개 배경
+                                "<rect class=\"card-bg\" x=\"10\" y=\"10\" width=\"531\" height=\"197\" rx=\"18\"/>" +
+                                // Programmers 로고 이미지와 텍스트(좌상단)
+                                "<image x=\"30\" y=\"22\" width=\"32\" height=\"32\" xlink:href=\"programmers_badge.png\"/>" +
+                                "<text x=\"70\" y=\"45\" font-size=\"1.3rem\" font-weight=\"bold\" fill=\"#222b3a\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\">Programmers</text>" +
+                                // 정보 텍스트 묶음 (카드 중앙 정렬)
+                                "<g>" +
+                                "<text x=\"60\" y=\"90\" class=\"title\">정복 중인 레벨</text>" +
+                                "<text x=\"60\" y=\"120\" class=\"desc\">%s</text>" +
+                                "<text x=\"120\" y=\"120\" class=\"desc-2\">레벨</text>" +
+                                "<text x=\"220\" y=\"90\" class=\"title\">현재 점수</text>" +
+                                "<text x=\"220\" y=\"120\" class=\"desc\">%s</text>" +
+                                "<text x=\"280\" y=\"120\" class=\"desc-2\">점</text>" +
+                                "<text x=\"340\" y=\"90\" class=\"title\">해결한 코딩 테스트</text>" +
+                                "<text x=\"340\" y=\"120\" class=\"desc\">%s</text>" +
+                                "<text x=\"400\" y=\"120\" class=\"desc-2\">문제</text>" +
+                                "<text x=\"460\" y=\"90\" class=\"title\">나의 랭킹</text>" +
+                                "<text x=\"460\" y=\"120\" class=\"desc\">%s</text>" +
+                                "<text x=\"520\" y=\"120\" class=\"desc-2\">위</text>" +
+                                "</g>" +
                                 "</svg>",
                         level != null ? level.toString() : "",
                         score != null ? score.toString() : "",
