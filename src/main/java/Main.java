@@ -81,35 +81,23 @@ public class Main {
                 String svgContent = String.format(
                         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                                 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
-                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"400px\" height=\"120px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
+                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"280px\" height=\"140px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
                                 "<style>" +
                                 ".title { fill: #222b3a; font-size: 0.85rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".desc { fill: #0078ff; font-size: 1.5rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
+                                ".desc { fill: #0078ff; font-size: 1.2rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
                                 ".desc-2 { fill: #6b7684; font-size: 0.85rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
                                 ".card-bg { fill: #e9eef6; stroke: #dbe3ec; stroke-width: 1; rx: 12; }" +
                                 "</style>" +
                                 // 카드 1개 배경
-                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"390\" height=\"110\" rx=\"12\"/>" +
-                                // Programmers 로고 이미지와 텍스트(좌상단)
-                                "<image x=\"20\" y=\"18\" width=\"24\" height=\"24\" xlink:href=\"programmers_logo.png\"/>" +
-                                "<text x=\"52\" y=\"35\" font-size=\"1.1rem\" font-weight=\"bold\" fill=\"#222b3a\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\">Programmers</text>" +
-                                // 정보 텍스트 묶음 (좌우 정렬)
-                                // 정복 중인 레벨
-                                "<text x=\"30\" y=\"70\" class=\"title\">정복 중인 레벨</text>" +
-                                "<text x=\"140\" y=\"70\" class=\"desc\" text-anchor=\"end\">%s</text>" +
-                                "<text x=\"155\" y=\"70\" class=\"desc-2\">레벨</text>" +
-                                // 현재 점수
-                                "<text x=\"180\" y=\"70\" class=\"title\">현재 점수</text>" +
-                                "<text x=\"270\" y=\"70\" class=\"desc\" text-anchor=\"end\">%s</text>" +
-                                "<text x=\"285\" y=\"70\" class=\"desc-2\">점</text>" +
-                                // 해결한 코딩 테스트
-                                "<text x=\"30\" y=\"100\" class=\"title\">해결한 코딩 테스트</text>" +
-                                "<text x=\"140\" y=\"100\" class=\"desc\" text-anchor=\"end\">%s</text>" +
-                                "<text x=\"155\" y=\"100\" class=\"desc-2\">문제</text>" +
-                                // 나의 랭킹
-                                "<text x=\"180\" y=\"100\" class=\"title\">나의 랭킹</text>" +
-                                "<text x=\"270\" y=\"100\" class=\"desc\" text-anchor=\"end\">%s</text>" +
-                                "<text x=\"285\" y=\"100\" class=\"desc-2\">위</text>" +
+                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"270\" height=\"130\" rx=\"12\"/>" +
+                                // Programmers 로고(base64)와 텍스트(상단 중앙)
+                                "<image x=\"30\" y=\"18\" width=\"24\" height=\"24\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAOVBMVEVHcEwgKz4gKz0gKz0VIzc3QE9LU2F3fYddZG+MkZkACiebn6Xg4eMAABgHGjH////P0NSvsrf19vfZo52CAAAAA3RSTlMASNfaYUakAAAAu0lEQVR4AX3TURKDMAhFURUCkSBG97/YJrZOYZr6fs/cwY84TfMCwy1zM/i7eYpdbCdwwxQ1YKI0RgJEIhoiMefUMA3LlXnlK0URjIjcsBSmJFmVNxEzvNE69uWyt6nWo/AbTdJ6HLWqnvtlBHaXuO5xiN+bmM5gKv6DLKbFPIJkdQgQEFCo1I8dErGzbeouOnSHq8EA5ewZC3h0Yc0bgkcXciCHxjuZl4A1WkDkaAEB4WfPT/PxUT/9Di8WvxDIKmTCowAAAABJRU5ErkJggg==\"/>" +
+                                "<text x=\"140\" y=\"38\" font-size=\"1.1rem\" font-weight=\"bold\" fill=\"#222b3a\" text-anchor=\"middle\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\">Programmers</text>" +
+                                // 정보 텍스트 묶음 (각 줄마다 가운데 정렬)
+                                "<text x=\"140\" y=\"70\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">정복 중인 레벨 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">레벨</tspan></text>" +
+                                "<text x=\"140\" y=\"90\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">현재 점수 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">점</tspan></text>" +
+                                "<text x=\"140\" y=\"110\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">해결한 코딩 테스트 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">문제</tspan></text>" +
+                                "<text x=\"140\" y=\"130\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">나의 랭킹 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">위</tspan></text>" +
                                 "</svg>",
                         level != null ? level.toString() : "",
                         score != null ? score.toString() : "",
