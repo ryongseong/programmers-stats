@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.text.NumberFormat;
 
 public class Main {
 
@@ -32,10 +33,10 @@ public class Main {
             // 프로그래머스 로그인
             String signInPayload = String.format("{\"user\": {\"email\": \"%s\", \"password\": \"%s\"}}", id, pw);
             HttpRequest signInRequest = HttpRequest.newBuilder()
-                    .uri(new URI(PROGRAMMERS_SIGN_IN))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(signInPayload))
-                    .build();
+                .uri(new URI(PROGRAMMERS_SIGN_IN))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(signInPayload))
+                .build();
 
             HttpResponse<String> signInResponse = client.send(signInRequest, HttpResponse.BodyHandlers.ofString());
             System.out.println(signInResponse);
@@ -46,16 +47,16 @@ public class Main {
 
             // 모든 쿠키를 추출
             List<String> cookies = signInResponse.headers().allValues("set-cookie").stream()
-                    .map(cookie -> cookie.split(";", 2)[0])  // 쿠키 값만 추출
-                    .collect(Collectors.toList());
+                .map(cookie -> cookie.split(";", 2)[0])  // 쿠키 값만 추출
+                .collect(Collectors.toList());
             String cookiesHeader = String.join("; ", cookies);
 
             // 사용자 정보 요청
             HttpRequest userRecordRequest = HttpRequest.newBuilder()
-                    .uri(new URI(PROGRAMMERS_USER_RECORD))
-                    .header("Cookie", cookiesHeader)
-                    .GET()
-                    .build();
+                .uri(new URI(PROGRAMMERS_USER_RECORD))
+                .header("Cookie", cookiesHeader)
+                .GET()
+                .build();
 
             HttpResponse<String> userRecordResponse = client.send(userRecordRequest, HttpResponse.BodyHandlers.ofString());
 
@@ -79,55 +80,92 @@ public class Main {
 
                 // 닉네임 변수 예시 (실제 데이터에 맞게 수정 필요)
                 String nickname = myData.getOrDefault("nickname", "gyudol").toString();
-                String svgContent = String.format(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-                                "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
-                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"370px\" height=\"210px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
-                                "<defs>" +
-                                "<linearGradient id=\"cardGradient\" x1=\"0%%\" y1=\"0%%\" x2=\"100%%\" y2=\"0%%\">" +
-                                "<stop offset=\"0%%\" style=\"stop-color:#a8d8f8;stop-opacity:1\" />" +
-                                "<stop offset=\"100%%\" style=\"stop-color:#3a5fc8;stop-opacity:1\" />" +
-                                "</linearGradient>" +
-                                "</defs>" +
-                                "<style>" +
-                                ".card-bg { stroke: #dbe3ec; stroke-width: 1; rx: 16; }" +
-                                ".header { font-size: 1.35rem; font-weight: bold; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; alignment-baseline: middle; }" +
-                                ".nickname { font-size: 1.15rem; font-weight: bold; fill: #ffffff; font-family: inherit; margin-left: 10px; animation: twinkling 2.5s ease-in-out infinite; }" +
-                                ".info-line { font-size: 1.08rem; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".info-label { font-size: 1.08rem; fill: #ffffff; font-family: inherit; font-weight: 500; }" +
-                                ".desc { fill: #ffffff; font-size: 1.18rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.95; }" +
-                                ".desc-2 { fill: #ffffff; font-size: 1.05rem; font-weight: bold; font-family: inherit; opacity: 0.7; }" +
-                                "@keyframes twinkling { 0%% { opacity: 1; } 40%% { opacity: 1; } 50%% { opacity: 0.4; } 60%% { opacity: 1; } 100%% { opacity: 1; } }" +
-                                "</style>" +
-                                // 카드 배경
-                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"360\" height=\"200\" rx=\"16\" fill=\"url(#cardGradient)\"/>" +
-                                // 좌측 logo 이미지 (크게, Programmers 아래)
-                                "<image x=\"30\" y=\"60\" width=\"60\" height=\"60\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAOVBMVEVHcEwgKz4gKz0gKz0VIzc3QE9LU2F3fYddZG+MkZkACiebn6Xg4eMAABgHGjH////P0NSvsrf19vfZo52CAAAAA3RSTlMASNfaYUakAAAAu0lEQVR4AX3TURKDMAhFURUCkSBG97/YJrZOYZr6fs/cwY84TfMCwy1zM/i7eYpdbCdwwxQ1YKI0RgJEIhoiMefUMA3LlXnlK0URjIjcsBSmJFmVNxEzvNE69uWyt6nWo/AbTdJ6HLWqnvtlBHaXuO5xiN+bmM5gKv6DLKbFPIJkdQgQEFCo1I8dErGzbeouOnSHq8EA5ewZC3h0Yc0bgkcXciCHxjuZl4A1WkDkaAEB4WfPT/PxUT/9Di8WvxDIKmTCowAAAABJRU5ErkJggg==\"/>" +
-                                // 상단 텍스트(좌측, 닉네임 오른쪽)
-                                "<text x=\"110\" y=\"45\" class=\"header\" text-anchor=\"start\">Programmers</text>" +
-                                "<text x=\"240\" y=\"45\" class=\"nickname\" text-anchor=\"start\">%s</text>" +
-                                // 정보 텍스트(라벨과 값 간격 넓힘, 가운데 정렬, 아래쪽 패딩)
-                                "<g>" +
-                                "<text x=\"90\" y=\"110\" class=\"info-label\" text-anchor=\"end\">Level</text>" +
-                                "<text x=\"120\" y=\"110\" class=\"desc\" text-anchor=\"start\">%s</text>" +
-                                "<text x=\"170\" y=\"110\" class=\"desc-2\" text-anchor=\"start\">level</text>" +
-                                "<text x=\"90\" y=\"140\" class=\"info-label\" text-anchor=\"end\">Rate</text>" +
-                                "<text x=\"120\" y=\"140\" class=\"desc\" text-anchor=\"start\">%s</text>" +
-                                "<text x=\"170\" y=\"140\" class=\"desc-2\" text-anchor=\"start\">pt</text>" +
-                                "<text x=\"90\" y=\"170\" class=\"info-label\" text-anchor=\"end\">Solved</text>" +
-                                "<text x=\"120\" y=\"170\" class=\"desc\" text-anchor=\"start\">%s</text>" +
-                                "<text x=\"170\" y=\"170\" class=\"desc-2\" text-anchor=\"start\">problems</text>" +
-                                "<text x=\"90\" y=\"200\" class=\"info-label\" text-anchor=\"end\">Rank</text>" +
-                                "<text x=\"120\" y=\"200\" class=\"desc\" text-anchor=\"start\">%s</text>" +
-                                "<text x=\"170\" y=\"200\" class=\"desc-2\" text-anchor=\"start\">th</text>" +
-                                "</g>" +
-                                "</svg>",
-                        nickname,
-                        level != null ? level.toString() : "",
-                        score != null ? score.toString() : "",
-                        solved != null ? solved.toString() : "",
-                        rank != null ? rank.toString() : ""
+
+                // 숫자 콤마 포맷 적용
+                NumberFormat nf = NumberFormat.getInstance();
+                int levelInt = 1;
+                String levelStr = "";
+                if (level != null) {
+                    try { levelInt = Integer.parseInt(level.toString()); } catch(Exception e) { levelInt = 1; }
+                    levelStr = nf.format(levelInt);
+                }
+                String scoreStr = score != null ? nf.format(Long.parseLong(score.toString())) : "";
+                String solvedStr = solved != null ? nf.format(Long.parseLong(solved.toString())) : "";
+                String rankStr = rank != null ? nf.format(Long.parseLong(rank.toString())) : "";
+
+                // 레벨 바(작대기) SVG 생성 (왼쪽 위로 이동)
+                StringBuilder levelBars = new StringBuilder();
+                int baseX = 300, baseY = 90, barGap = 32;
+                for (int i = 0; i < levelInt; i++) {
+                    int y = baseY + i * barGap;
+                    // 바깥쪽(빛나는 효과)
+                    levelBars.append(String.format(
+                        "<polyline class=\"level-v-glow\" points=\"290,%d 320,%d 350,%d\" />", y, y + 28, y
+                    ));
+                    // 안쪽(흰색)
+                    levelBars.append(String.format(
+                        "<polyline class=\"level-v\" points=\"295,%d 320,%d 345,%d\" />", y, y + 22, y
+                    ));
+                }
+
+                String svgContent = String.format("""
+                    <?xml version="1.0" encoding="UTF-8"?>
+                    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="390px" height="200px"
+                         style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
+                                image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <defs>
+                        <linearGradient id="cardGradient" x1="0%%" y1="0%%" x2="100%%" y2="0%%">
+                          <stop offset="0%%" style="stop-color:#7dbbe6;stop-opacity:1" />
+                          <stop offset="100%%" style="stop-color:#1a3399;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow" x="-50%%" y="-50%%" width="200%%" height="200%%">
+                          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#e0eaff" flood-opacity="0.9"/>
+                        </filter>
+                      </defs>
+                      <style>
+                        .card-bg { stroke: #dbe3ec; stroke-width: 1; rx: 14; }
+                        .header { font-size: 1.25rem; font-weight: bold; fill: #fff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; alignment-baseline: middle; }
+                        .logo-img { vertical-align: middle; }
+                        .nickname { font-size: 1.35rem; font-weight: bold; fill: #fff; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; }
+                        .info-label { font-size: 1.02rem; fill: #fff; font-family: inherit; font-weight: 500; }
+                        .desc { fill: #fff; font-size: 1.12rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.95; }
+                        .desc-2 { fill: #fff; font-size: 0.98rem; font-weight: bold; font-family: inherit; opacity: 0.7; }
+                        .level-v { fill: none; stroke: #fff; stroke-width: 8; stroke-linecap: round; opacity: 0.95; }
+                        .level-v-glow { fill: none; stroke: #e0eaff; stroke-width: 16; stroke-linecap: round; opacity: 0.55; filter: url(#glow); }
+                        @keyframes twinkling { 0%% { opacity: 1; } 40%% { opacity: 1; } 50%% { opacity: 0.4; } 60%% { opacity: 1; } 100%% { opacity: 1; } }
+                      </style>
+                      <rect class="card-bg" x="5" y="5" width="380" height="190" rx="14" fill="url(#cardGradient)"/>
+                      <image x="30" y="20" width="28" height="28" class="logo-img"
+                             xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAOVBMVEVHcEwgKz4gKz0gKz0VIzc3QE9LU2F3fYddZG+MkZkACiebn6Xg4eMAABgHGjH////P0NSvsrf19vfZo52CAAAAA3RSTlMASNfaYUakAAAAu0lEQVR4AX3TURKDMAhFURUCkSBG97/YJrZOYZr6fs/cwY84TfMCwy1zM/i7eYpdbCdwwxQ1YKI0RgJEIhoiMefUMA3LlXnlK0URjIjcsBSmJFmVNxEzvNE69uWyt6nWo/AbTdJ6HLWqnvtlBHaXuO5xiN+bmM5gKv6DLKbFPIJkdQgQEFCo1I8dErGzbeouOnSHq8EA5ewZC3h0Yc0bgkcXciCHxjuZl4A1WkDkaAEB4WfPT/PxUT/9Di8WvxDIKmTCowAAAABJRU5ErkJggg=="/>
+                      <text x="65" y="42" class="header" text-anchor="start">Programmers</text>
+                      <text x="280" y="42" class="nickname" text-anchor="start">%s</text>
+                      <g>%s</g>
+                      <g>
+                        <text x="90" y="90" class="info-label" text-anchor="end">Level</text>
+                        <text x="140" y="90" class="desc" text-anchor="start">%s</text>
+                        <text x="200" y="90" class="desc-2" text-anchor="start">level</text>
+                        <text x="90" y="120" class="info-label" text-anchor="end">Rate</text>
+                        <text x="140" y="120" class="desc" text-anchor="start">%s</text>
+                        <text x="200" y="120" class="desc-2" text-anchor="start">pt</text>
+                        <text x="90" y="150" class="info-label" text-anchor="end">Solved</text>
+                        <text x="140" y="150" class="desc" text-anchor="start">%s</text>
+                        <text x="200" y="150" class="desc-2" text-anchor="start">problems</text>
+                        <text x="90" y="180" class="info-label" text-anchor="end">Rank</text>
+                        <text x="140" y="180" class="desc" text-anchor="start">%s</text>
+                        <text x="200" y="180" class="desc-2" text-anchor="start">th</text>
+                      </g>
+                    </svg>
+                    """,
+                    nickname,
+                    levelBars.toString(),
+                    levelStr,
+                    scoreStr,
+                    solvedStr,
+                    rankStr
                 );
+
 
                 Path currentPath = Paths.get("").toAbsolutePath();
                 System.out.println("현재 작업 디렉토리: " + currentPath);
