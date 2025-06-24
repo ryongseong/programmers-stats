@@ -81,23 +81,32 @@ public class Main {
                 String svgContent = String.format(
                         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                                 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
-                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"280px\" height=\"140px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
+                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"320px\" height=\"170px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
+                                "<defs>" +
+                                "<linearGradient id=\"cardGradient\" x1=\"0%%\" y1=\"0%%\" x2=\"100%%\" y2=\"0%%\">" +
+                                "<stop offset=\"0%%\" style=\"stop-color:#87CEEB;stop-opacity:1\" />" +
+                                "<stop offset=\"100%%\" style=\"stop-color:#00008B;stop-opacity:1\" />" +
+                                "</linearGradient>" +
+                                "</defs>" +
                                 "<style>" +
-                                ".title { fill: #222b3a; font-size: 0.85rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".desc { fill: #0078ff; font-size: 1.2rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".desc-2 { fill: #6b7684; font-size: 0.85rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".card-bg { fill: #e9eef6; stroke: #dbe3ec; stroke-width: 1; rx: 12; }" +
+                                ".card-bg { stroke: #dbe3ec; stroke-width: 1; rx: 12; }" +
+                                ".header { font-size: 1.25rem; font-weight: bold; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; alignment-baseline: middle; }" +
+                                ".info-line { font-size: 1.02rem; fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
+                                ".desc { fill: #ffffff; font-size: 1.08rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.9; }" +
+                                ".desc-2 { fill: #ffffff; font-size: 0.95rem; font-weight: bold; font-family: inherit; opacity: 0.7; }" +
+                                "@keyframes twinkling { 0%% { opacity: 1; } 40%% { opacity: 1; } 50%% { opacity: 0.4; } 60%% { opacity: 1; } 100%% { opacity: 1; } }" +
                                 "</style>" +
-                                // 카드 1개 배경
-                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"270\" height=\"130\" rx=\"12\"/>" +
-                                // Programmers 로고(base64)와 텍스트(상단 중앙)
-                                "<image x=\"30\" y=\"18\" width=\"24\" height=\"24\" xlink:href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAOVBMVEVHcEwgKz4gKz0gKz0VIzc3QE9LU2F3fYddZG+MkZkACiebn6Xg4eMAABgHGjH////P0NSvsrf19vfZo52CAAAAA3RSTlMASNfaYUakAAAAu0lEQVR4AX3TURKDMAhFURUCkSBG97/YJrZOYZr6fs/cwY84TfMCwy1zM/i7eYpdbCdwwxQ1YKI0RgJEIhoiMefUMA3LlXnlK0URjIjcsBSmJFmVNxEzvNE69uWyt6nWo/AbTdJ6HLWqnvtlBHaXuO5xiN+bmM5gKv6DLKbFPIJkdQgQEFCo1I8dErGzbeouOnSHq8EA5ewZC3h0Yc0bgkcXciCHxjuZl4A1WkDkaAEB4WfPT/PxUT/9Di8WvxDIKmTCowAAAABJRU5ErkJggg==\"/>" +
-                                "<text x=\"140\" y=\"38\" font-size=\"1.1rem\" font-weight=\"bold\" fill=\"#222b3a\" text-anchor=\"middle\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\">Programmers</text>" +
-                                // 정보 텍스트 묶음 (각 줄마다 가운데 정렬)
-                                "<text x=\"140\" y=\"70\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">정복 중인 레벨 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">레벨</tspan></text>" +
-                                "<text x=\"140\" y=\"90\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">현재 점수 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">점</tspan></text>" +
-                                "<text x=\"140\" y=\"110\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">해결한 코딩 테스트 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">문제</tspan></text>" +
-                                "<text x=\"140\" y=\"130\" font-size=\"0.95rem\" fill=\"#222b3a\" text-anchor=\"middle\">나의 랭킹 <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\">위</tspan></text>" +
+                                // 카드 배경
+                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"310\" height=\"160\" rx=\"12\" fill=\"url(#cardGradient)\"/>" +
+                                // 상단 텍스트(로고 제거)
+                                "<text x=\"22\" y=\"45\" class=\"header\" text-anchor=\"start\">Programmers</text>" +
+                                // 정보 텍스트(자연스러운 줄 간격, 가운데 정렬)
+                                "<g>" +
+                                "<text x=\"160\" y=\"80\" class=\"info-line\" text-anchor=\"middle\">Level <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> level</tspan></text>" +
+                                "<text x=\"160\" y=\"105\" class=\"info-line\" text-anchor=\"middle\">Rate <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> pt</tspan></text>" +
+                                "<text x=\"160\" y=\"130\" class=\"info-line\" text-anchor=\"middle\">Solved <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> problems</tspan></text>" +
+                                "<text x=\"160\" y=\"155\" class=\"info-line\" text-anchor=\"middle\">Rank <tspan class=\"desc\">%s</tspan><tspan class=\"desc-2\"> th</tspan></text>" +
+                                "</g>" +
                                 "</svg>",
                         level != null ? level.toString() : "",
                         score != null ? score.toString() : "",
