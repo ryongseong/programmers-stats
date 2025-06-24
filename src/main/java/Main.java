@@ -81,33 +81,35 @@ public class Main {
                 String svgContent = String.format(
                         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                                 "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
-                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"551px\" height=\"217px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
+                                "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"400px\" height=\"120px\" style=\"shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">" +
                                 "<style>" +
-                                ".title { fill: #222b3a; font-size: 1rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".desc { fill: #0078ff; font-size: 2.5rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".desc-2 { fill: #6b7684; font-size: 1rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
-                                ".card-bg { fill: #e9eef6; stroke: #dbe3ec; stroke-width: 1; rx: 18; }" +
+                                ".title { fill: #222b3a; font-size: 0.85rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
+                                ".desc { fill: #0078ff; font-size: 1.5rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
+                                ".desc-2 { fill: #6b7684; font-size: 0.85rem; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; }" +
+                                ".card-bg { fill: #e9eef6; stroke: #dbe3ec; stroke-width: 1; rx: 12; }" +
                                 "</style>" +
                                 // 카드 1개 배경
-                                "<rect class=\"card-bg\" x=\"10\" y=\"10\" width=\"531\" height=\"197\" rx=\"18\"/>" +
+                                "<rect class=\"card-bg\" x=\"5\" y=\"5\" width=\"390\" height=\"110\" rx=\"12\"/>" +
                                 // Programmers 로고 이미지와 텍스트(좌상단)
-                                "<image x=\"30\" y=\"22\" width=\"32\" height=\"32\" xlink:href=\"programmers_badge.png\"/>" +
-                                "<text x=\"70\" y=\"45\" font-size=\"1.3rem\" font-weight=\"bold\" fill=\"#222b3a\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\">Programmers</text>" +
-                                // 정보 텍스트 묶음 (카드 중앙 정렬)
-                                "<g>" +
-                                "<text x=\"60\" y=\"90\" class=\"title\">정복 중인 레벨</text>" +
-                                "<text x=\"60\" y=\"120\" class=\"desc\">%s</text>" +
-                                "<text x=\"120\" y=\"120\" class=\"desc-2\">레벨</text>" +
-                                "<text x=\"220\" y=\"90\" class=\"title\">현재 점수</text>" +
-                                "<text x=\"220\" y=\"120\" class=\"desc\">%s</text>" +
-                                "<text x=\"280\" y=\"120\" class=\"desc-2\">점</text>" +
-                                "<text x=\"340\" y=\"90\" class=\"title\">해결한 코딩 테스트</text>" +
-                                "<text x=\"340\" y=\"120\" class=\"desc\">%s</text>" +
-                                "<text x=\"400\" y=\"120\" class=\"desc-2\">문제</text>" +
-                                "<text x=\"460\" y=\"90\" class=\"title\">나의 랭킹</text>" +
-                                "<text x=\"460\" y=\"120\" class=\"desc\">%s</text>" +
-                                "<text x=\"520\" y=\"120\" class=\"desc-2\">위</text>" +
-                                "</g>" +
+                                "<image x=\"20\" y=\"18\" width=\"24\" height=\"24\" xlink:href=\"programmers_logo.png\"/>" +
+                                "<text x=\"52\" y=\"35\" font-size=\"1.1rem\" font-weight=\"bold\" fill=\"#222b3a\" font-family=\"-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\">Programmers</text>" +
+                                // 정보 텍스트 묶음 (좌우 정렬)
+                                // 정복 중인 레벨
+                                "<text x=\"30\" y=\"70\" class=\"title\">정복 중인 레벨</text>" +
+                                "<text x=\"140\" y=\"70\" class=\"desc\" text-anchor=\"end\">%s</text>" +
+                                "<text x=\"155\" y=\"70\" class=\"desc-2\">레벨</text>" +
+                                // 현재 점수
+                                "<text x=\"180\" y=\"70\" class=\"title\">현재 점수</text>" +
+                                "<text x=\"270\" y=\"70\" class=\"desc\" text-anchor=\"end\">%s</text>" +
+                                "<text x=\"285\" y=\"70\" class=\"desc-2\">점</text>" +
+                                // 해결한 코딩 테스트
+                                "<text x=\"30\" y=\"100\" class=\"title\">해결한 코딩 테스트</text>" +
+                                "<text x=\"140\" y=\"100\" class=\"desc\" text-anchor=\"end\">%s</text>" +
+                                "<text x=\"155\" y=\"100\" class=\"desc-2\">문제</text>" +
+                                // 나의 랭킹
+                                "<text x=\"180\" y=\"100\" class=\"title\">나의 랭킹</text>" +
+                                "<text x=\"270\" y=\"100\" class=\"desc\" text-anchor=\"end\">%s</text>" +
+                                "<text x=\"285\" y=\"100\" class=\"desc-2\">위</text>" +
                                 "</svg>",
                         level != null ? level.toString() : "",
                         score != null ? score.toString() : "",
