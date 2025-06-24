@@ -5,8 +5,8 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-  repository_dispatch:
-    types: [trigger-workflow]
+  schedule:
+    - cron: '0 15 * * 0'
 
 jobs:
   build:
