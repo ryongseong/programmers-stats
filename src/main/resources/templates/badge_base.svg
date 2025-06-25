@@ -2,8 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390" height="200">
   <defs>
     <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#32CD32;" />
-<stop offset="100%" style="stop-color:#228B22;" /> 
+      {{gradient}}
     </linearGradient>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#e0eaff" flood-opacity="0.9"/>
@@ -26,24 +25,21 @@
          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAOVBMVEVHcEwgKz4gKz0gKz0VIzc3QE9LU2F3fYddZG+MkZkACiebn6Xg4eMAABgHGjH////P0NSvsrf19vfZo52CAAAAA3RSTlMASNfaYUakAAAAu0lEQVR4AX3TURKDMAhFURUCkSBG97/YJrZOYZr6fs/cwY84TfMCwy1zM/i7eYpdbCdwwxQ1YKI0RgJEIhoiMefUMA3LlXnlK0URjIjcsBSmJFmVNxEzvNE69uWyt6nWo/AbTdJ6HLWqnvtlBHaXuO5xiN+bmM5gKv6DLKbFPIJkdQgQEFCo1I8dErGzbeouOnSHq8EA5ewZC3h0Yc0bgkcXciCHxjuZl4A1WkDkaAEB4WfPT/PxUT/9Di8WvxDIKmTCowAAAABJRU5ErkJggg=="/>
   <text x="65" y="42" class="header" text-anchor="start">Programmers</text>
   <g id="badge-content">
-    <polyline class='level-v-glow' points='290,90 320,118 350,90'/>
-<polyline class='level-v' points='295,90 320,112 345,90'/>
-<polyline class='level-v-glow' points='290,122 320,150 350,122'/>
-<polyline class='level-v' points='295,122 320,144 345,122'/> 
-    
-    
-    <text x="320" y="48" class="nickname" text-anchor="middle" style="font-size:1.35rem;">gyudol</text> 
+    {{levelBars}}
+    {{shield}}
+    {{diamond}}
+    {{nicknameSvg}}
     <text x="90" y="90" class="info-label" text-anchor="end">Level</text>
-    <text x="120" y="90" class="desc">2</text>
+    <text x="120" y="90" class="desc">{{level}}</text>
     <text x="200" y="90" class="desc-2" text-anchor="start">level</text>
     <text x="90" y="120" class="info-label" text-anchor="end">Rate</text>
-    <text x="120" y="120" class="desc">1,433</text>
+    <text x="120" y="120" class="desc">{{score}}</text>
     <text x="200" y="120" class="desc-2" text-anchor="start">pt</text>
     <text x="90" y="150" class="info-label" text-anchor="end">Solved</text>
-    <text x="120" y="150" class="desc">105</text>
+    <text x="120" y="150" class="desc">{{solved}}</text>
     <text x="200" y="150" class="desc-2" text-anchor="start">problems</text>
     <text x="90" y="180" class="info-label" text-anchor="end">Rank</text>
-    <text x="120" y="180" class="desc">27,517</text>
-    <text x="200" y="180" class="desc-2" text-anchor="start">th</text>
+    <text x="120" y="180" class="desc">{{rank}}</text>
+    <text x="200" y="180" class="desc-2" text-anchor="start">{{rankSuffix}}</text>
   </g>
 </svg> 

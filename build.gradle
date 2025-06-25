@@ -11,10 +11,17 @@ repositories {
 }
 
 dependencies {
+    // Jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.12.3'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.3'
+
+    // Apache HttpClient
     implementation 'org.apache.httpcomponents.client5:httpclient5:5.1'
+
+    // Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -25,5 +32,5 @@ test {
 }
 
 application {
-    mainClass = 'Main'
+    mainClass = 'ProgrammersBadgeGenerator'
 }

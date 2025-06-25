@@ -1,0 +1,1 @@
+<text x="320" y="{{y}}" class="nickname" text-anchor="middle" style="font-size:{{fontSize}};">{{nickname}}</text> 
