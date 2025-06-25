@@ -7,9 +7,19 @@
 
 [tomy8964/Programmers_Badge_Generator](https://github.com/tomy8964/Programmers_Badge_Generator?tab=readme-ov-file)를 기반으로 디자인을 새롭게 구성하고, 배지 생성 절차를 간소화하였습니다.
 
-|                      이전 배지 이미지                       |                     현재 배지 이미지                      |
-| :---------------------------------------------------------: | :-------------------------------------------------------: |
-| ![Previous svg design](./readme-assets/prev_svg_design.svg) | ![Current svg design](./readme-assets/cur_svg_design.svg) |
+|                        이전 배지 디자인                         |                       현재 배지 디자인                        |
+| :-------------------------------------------------------------: | :-----------------------------------------------------------: |
+| ![Previous badge design](./readme-assets/prev_badge_design.svg) | ![Current badge design](./readme-assets/cur_badge_design.svg) |
+
+## 🌟 레벨 별 배지 디자인
+
+|                          Lv1. 디자인                          |                          Lv2. 디자인                          |                          Lv3. 디자인                          |
+| :-----------------------------------------------------------: | :-----------------------------------------------------------: | :-----------------------------------------------------------: |
+| ![Lv1. badge design](./readme-assets/level1_badge_design.svg) | ![Lv2. badge design](./readme-assets/level2_badge_design.svg) | ![Lv3. badge design](./readme-assets/level3_badge_design.svg) |
+
+|                          Lv4. 디자인                          |                          Lv5. 디자인                          |                         Challenger 디자인                         |
+| :-----------------------------------------------------------: | :-----------------------------------------------------------: | :---------------------------------------------------------------: |
+| ![Lv4. badge design](./readme-assets/level4_badge_design.svg) | ![Lv5. badge design](./readme-assets/level5_badge_design.svg) | ![Lv6. badge design](./readme-assets/challenger_badge_design.svg) |
 
 <br>
 
@@ -45,20 +55,19 @@
    → **Add the Programmers badge to your GitHub profile.**
 
    - GitHub 프로필에 해당하는 레포지토리(`{your GitHub ID}.github.io` 또는 `{your GitHub ID}`)의 `README.md` 파일에 다음 코드를 삽입하세요:  
-     → **Edit the `README.md` of your GitHub profile repo and insert the following:**
+      → **Edit the `README.md` of your GitHub profile repo and insert the following:**
 
      ```
-     ![Programmers Badge](https://raw.githubusercontent.com/{your-github-id}/programmers-badge-generator/main/result/result.svg)
+     ![Programmers Badge](https://raw.githubusercontent.com/{your-github-id}/programmers-badge-generator/main/output/result.svg)
      ```
 
-6. 프로필에서 배지가 잘 표시되는지 확인합니다.  
-    → **Verify that the badge is displayed correctly on your profile.**
-   <br><br>
+     <br>
 
 ## 🔄 배지 수동 갱신 (Manually Refreshing the Badge)
 
 배지를 수동으로 갱신하고 싶다면,  
-포크한 레포지토리의 **Actions** 탭으로 이동하여 가장 최근에 실행된 워크플로를 선택한 후 우측 상단의 **Re-run jobs** 버튼을 클릭하세요.
+포크한 레포지토리의 **Actions** 탭으로 이동하여  
+가장 최근에 실행된 워크플로우를 선택한 후 우측 상단의 **Re-run jobs** 버튼을 클릭하세요.
 
 → **To manually refresh the badge**,  
 go to the **Actions** tab of your forked repository,  
