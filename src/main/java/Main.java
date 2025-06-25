@@ -85,7 +85,9 @@ public class Main {
                 int levelInt = 0;
                 String levelStr = "";
                 if (level != null) {
-                    try { levelInt = Integer.parseInt(level.toString()); } catch(Exception e) { levelInt = 1; }
+                    try {
+                         levelInt = Integer.parseInt(level.toString());
+                    } catch(Exception e) { levelInt = 0; }
                     levelStr = nf.format(levelInt);
                 }
                 String scoreStr = score != null ? nf.format(Long.parseLong(score.toString())) : "";
@@ -194,46 +196,48 @@ public class Main {
                 ));
             }
         } else if (levelInt == 4) {
-            // 레벨 4: 레벨 2 + 실제 방패 스타일(더 위로, glow 효과, 첫번째 막대 중간까지)
-            for (int i = 0; i < 2; i++) {
-                int y = baseY + i * barGap;
-                levelBars.append(String.format(
-                    "<polyline class=\"level-v-glow\" points=\"290,%d 320,%d 350,%d\" />", y, y + 28, y
-                ));
-                levelBars.append(String.format(
-                    "<polyline class=\"level-v\" points=\"295,%d 320,%d 345,%d\" />", y, y + 22, y
-                ));
-            }
-            // 실제 방패 스타일(더 위로, glow 효과, 첫번째 막대 중간까지)
-            levelBars.append("<polygon points='320,105 300,145 305,185 335,185 340,145' style='fill:#fff;stroke:#bfa76a;stroke-width:4;opacity:0.85;filter:url(#glow);' />"
-                + "<polygon points='320,120 303,148 307,180 333,180 337,148' style='fill:#f8f8f8;stroke:none;opacity:0.7;' />");
-        } else if (levelInt >= 5) {
-            // 레벨 5: 뒤집힌 바(뒤) + 바 2개(앞) + 실제 방패 스타일(더 위로, glow 효과, 첫번째 막대 중간까지)
-            int y1 = baseY;
-            int y2 = baseY + barGap;
-            int y3 = y1 + 28; // 첫번째 바의 아래 꼭짓점
-            // 1. 뒤집힌 바(뒤에)
+            // 레벨 4: 바 2개 + 방패(은색)
             levelBars.append("<g>");
-            levelBars.append(String.format(
-                "<polyline class=\"level-v-glow\" points=\"290,%d 320,%d 350,%d\" />", y3 + 28, y3, y3 + 28
-            ));
-            levelBars.append(String.format(
-                "<polyline class=\"level-v\" points=\"295,%d 320,%d 345,%d\" />", y3 + 22, y3, y3 + 22
-            ));
+            // 아래 바
+            levelBars.append("<g><polyline class=\"level-v-glow\" points=\"290,146 320,118 350,146\" />");
+            levelBars.append("<polyline class=\"level-v\" points=\"295,140 320,118 345,140\" /></g>");
+            // 위 바
+            levelBars.append("<polyline class=\"level-v-glow\" points=\"290,90 320,118 350,90\" />");
+            levelBars.append("<polyline class=\"level-v\" points=\"295,90 320,112 345,90\" />");
+            // 가운데 바
+            levelBars.append("<polyline class=\"level-v-glow\" points=\"290,122 320,150 350,122\" />");
+            levelBars.append("<polyline class=\"level-v\" points=\"295,122 320,144 345,122\" />");
+            // 은색 방패
+            levelBars.append("<polygon points='320,150 300,120 305,90 335,90 340,120' style='fill:#fff;stroke:#bfc9d6;stroke-width:4;opacity:0.92;filter:url(#glow);' />");
+            levelBars.append("<polygon points='320,145 303,117 307,95 333,95 337,117' style='fill:#e0eaff;stroke:none;opacity:0.7;' />");
             levelBars.append("</g>");
-            // 2. 일반 바 2개(앞에)
-            for (int i = 0; i < 2; i++) {
-                int y = baseY + i * barGap;
-                levelBars.append(String.format(
-                    "<polyline class=\"level-v-glow\" points=\"290,%d 320,%d 350,%d\" />", y, y + 28, y
-                ));
-                levelBars.append(String.format(
-                    "<polyline class=\"level-v\" points=\"295,%d 320,%d 345,%d\" />", y, y + 22, y
-                ));
-            }
-            // 실제 방패 스타일(더 위로, glow 효과, 첫번째 막대 중간까지)
-            levelBars.append("<polygon points='320,105 300,145 305,185 335,185 340,145' style='fill:#fff;stroke:#bfa76a;stroke-width:4;opacity:0.85;filter:url(#glow);' />"
-                + "<polygon points='320,120 303,148 307,180 333,180 337,148' style='fill:#f8f8f8;stroke:none;opacity:0.7;' />");
+        } else if (levelInt >= 5) {
+            // 레벨 5: 바 3개 + 방패(금색) + 중앙 보석
+            levelBars.append("<g>");
+            // 아래 바
+            levelBars.append("<g><polyline class=\"level-v-glow\" points=\"290,146 320,118 350,146\" />");
+            levelBars.append("<polyline class=\"level-v\" points=\"295,140 320,118 345,140\" /></g>");
+            // 위 바
+            levelBars.append("<polyline class=\"level-v-glow\" points=\"290,90 320,118 350,90\" />");
+            levelBars.append("<polyline class=\"level-v\" points=\"295,90 320,112 345,90\" />");
+            // 가운데 바
+            levelBars.append("<polyline class=\"level-v-glow\" points=\"290,122 320,150 350,122\" />");
+            levelBars.append("<polyline class=\"level-v\" points=\"295,122 320,144 345,122\" />");
+            // 금색 방패
+            levelBars.append("<polygon points='320,150 300,120 305,90 335,90 340,120' style='fill:#fff;stroke:#bfa76a;stroke-width:4;opacity:0.92;filter:url(#glow);' />");
+            levelBars.append("<polygon points='320,145 303,117 307,95 333,95 337,117' style='fill:#f8f8f8;stroke:none;opacity:0.7;' />");
+
+            // 외곽 다이아몬드 (투명한 파란빛)
+            levelBars.append("<polygon points='320,108 310,120 320,132 330,120' style='fill:#b3e5fc;stroke:#81d4fa;stroke-width:3;filter:url(#glow);opacity:0.95;' />");
+
+// 내부 컷면 (살짝 밝은 색)
+            levelBars.append("<polygon points='320,112 314,120 320,128 326,120' style='fill:#e0f7fa;stroke:none;opacity:0.85;' />");
+
+// 광택 하이라이트
+            levelBars.append("<polygon points='318,114 320,116 322,114 320,112' style='fill:white;opacity:0.3;' />");
+
+
+            levelBars.append("</g>");
         }
         return levelBars.toString();
     }
