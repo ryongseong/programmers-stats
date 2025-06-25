@@ -79,22 +79,15 @@ public class Main {
                 Object rank = ((Map<String, Object>) myData.get("ranking")).get("rank");
 
                 String nickname = myData.getOrDefault("name", "Gyuchan Kim").toString();
-                nickname = "Gyuchan Kim";
 
                 // 숫자 콤마 포맷 적용
                 NumberFormat nf = NumberFormat.getInstance();
                 int levelInt = 0;
                 String levelStr = "";
                 if (level != null) {
-                    try {
-                        // levelInt = Integer.parseInt(level.toString());
-                        levelInt = 3;
-                    } catch(Exception e) { levelInt = 0; }
+                    try { levelInt = Integer.parseInt(level.toString()); } catch(Exception e) { levelInt = 1; }
                     levelStr = nf.format(levelInt);
                 }
-//                String scoreStr = score != null ? nf.format(Long.parseLong("1600")) : "";
-//                String solvedStr = solved != null ? nf.format(Long.parseLong("333")) : "";
-//                String rankStr = rank != null ? nf.format(Long.parseLong("1000")) : "";
                 String scoreStr = score != null ? nf.format(Long.parseLong(score.toString())) : "";
                 String solvedStr = solved != null ? nf.format(Long.parseLong(solved.toString())) : "";
                 String rankStr = rank != null ? nf.format(Long.parseLong(rank.toString())) : "";
