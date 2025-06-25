@@ -90,6 +90,7 @@ public class Main {
                     } catch(Exception e) { levelInt = 0; }
                     levelStr = nf.format(levelInt);
                 }
+
                 String scoreStr = score != null ? nf.format(Long.parseLong(score.toString())) : "";
                 String solvedStr = solved != null ? nf.format(Long.parseLong(solved.toString())) : "";
                 String rankStr = rank != null ? nf.format(Long.parseLong(rank.toString())) : "";
@@ -146,9 +147,12 @@ public class Main {
     /**
      * 레벨 바 SVG를 생성합니다.
      * @param levelInt 사용자 레벨
+     * @param scoreStr 점수 문자열
+     * @param solvedStr 해결한 문제 수 문자열
+     * @param rankStr 랭킹 문자열
      * @return 레벨 바 SVG 문자열
      */
-    private static String generateLevelBars(int levelInt) {
+    private static String generateLevelBars(int levelInt, String scoreStr, String solvedStr, String rankStr) {
         StringBuilder levelBars = new StringBuilder();
         int baseX = 300, baseY = 90, barGap = 32;
         if (levelInt == 1) {
@@ -212,7 +216,7 @@ public class Main {
             levelBars.append("<polygon points='320,145 303,117 307,95 333,95 337,117' style='fill:#e0eaff;stroke:none;opacity:0.7;' />");
             levelBars.append("</g>");
         } else if (levelInt >= 5) {
-            // 레벨 5: 바 3개 + 방패(금색) + 중앙 보석
+            // 레벨 5: 바 3개 + 방패(금색) + 조건부 다이아몬드 보석
             levelBars.append("<g>");
             // 아래 바
             levelBars.append("<g><polyline class=\"level-v-glow\" points=\"290,146 320,118 350,146\" />");
@@ -226,17 +230,30 @@ public class Main {
             // 금색 방패
             levelBars.append("<polygon points='320,150 300,120 305,90 335,90 340,120' style='fill:#fff;stroke:#bfa76a;stroke-width:4;opacity:0.92;filter:url(#glow);' />");
             levelBars.append("<polygon points='320,145 303,117 307,95 333,95 337,117' style='fill:#f8f8f8;stroke:none;opacity:0.7;' />");
-
-            // 외곽 다이아몬드 (투명한 파란빛)
-            levelBars.append("<polygon points='320,108 310,120 320,132 330,120' style='fill:#b3e5fc;stroke:#81d4fa;stroke-width:3;filter:url(#glow);opacity:0.95;' />");
-
-// 내부 컷면 (살짝 밝은 색)
-            levelBars.append("<polygon points='320,112 314,120 320,128 326,120' style='fill:#e0f7fa;stroke:none;opacity:0.85;' />");
-
-// 광택 하이라이트
-            levelBars.append("<polygon points='318,114 320,116 322,114 320,112' style='fill:white;opacity:0.3;' />");
-
-
+            // 다이아몬드 보석 조건: 레벨 5, rate 1600 이상, solved 333 이상, rank 1000 이내
+            String safeScoreStr = (scoreStr == null) ? "" : scoreStr;
+            String safeSolvedStr = (solvedStr == null) ? "" : solvedStr;
+            String safeRankStr = (rankStr == null) ? "" : rankStr;
+            long scoreVal = 0;
+            long solvedVal = 0;
+            int rankVal = Integer.MAX_VALUE;
+            try {
+                scoreVal = Long.parseLong(safeScoreStr.replaceAll("[^0-9]", ""));
+            } catch (Exception e) {}
+            try {
+                solvedVal = Long.parseLong(safeSolvedStr.replaceAll("[^0-9]", ""));
+            } catch (Exception e) {}
+            try {
+                rankVal = Integer.parseInt(safeRankStr.replaceAll("[^0-9]", ""));
+            } catch (Exception e) {}
+            if (scoreVal >= 1600 && solvedVal >= 333 && rankVal <= 1000) {
+                // 외곽 다이아몬드 (투명한 파란빛)
+                levelBars.append("<polygon points='320,108 310,120 320,132 330,120' style='fill:#b3e5fc;stroke:#81d4fa;stroke-width:3;filter:url(#glow);opacity:0.95;' />");
+                // 내부 컷면 (살짝 밝은 색)
+                levelBars.append("<polygon points='320,112 314,120 320,128 326,120' style='fill:#e0f7fa;stroke:none;opacity:0.85;' />");
+                // 광택 하이라이트
+                levelBars.append("<polygon points='318,114 320,116 322,114 320,112' style='fill:white;opacity:0.3;' />");
+            }
             levelBars.append("</g>");
         }
         return levelBars.toString();
@@ -265,7 +282,7 @@ public class Main {
     private static String generateBadgeSVG(String nickname, int levelInt, String levelStr, 
                                          String scoreStr, String solvedStr, String rankStr) {
         String[] gradientColors = getGradientColorsByLevel(levelInt);
-        String levelBars = generateLevelBars(levelInt);
+        String levelBars = generateLevelBars(levelInt, scoreStr, solvedStr, rankStr);
         String displayNickname = trimNickname(nickname);
 
         // 한글 포함 여부
