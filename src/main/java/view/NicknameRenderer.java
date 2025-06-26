@@ -6,7 +6,7 @@ public class NicknameRenderer {
 
     private static final NicknameRenderer nicknameRenderer = new NicknameRenderer();
 
-    private static final double BASE_FONT_SIZE = 1.35;
+    private static final double BASE_FONT_SIZE = 1.2;
     private static final double KOREAN_SCALE_FACTOR = 0.8;
 
     private NicknameRenderer() {}
@@ -44,12 +44,13 @@ public class NicknameRenderer {
         double firstLineScale = calculateScale(firstLine.length(), hasKorean);
         double secondLineScale = calculateScale(secondLine.length(), hasKorean);
         
-        String firstLineFontSize = String.format("%.2frem", BASE_FONT_SIZE * firstLineScale);
-        String secondLineFontSize = String.format("%.2frem", BASE_FONT_SIZE * secondLineScale);
+        // 더 작은 폰트 크기로 통합
+        double unifiedScale = Math.min(firstLineScale, secondLineScale);
+        String unifiedFontSize = String.format("%.2frem", BASE_FONT_SIZE * unifiedScale);
 
         return SvgTemplateLoader.loadTemplate("nickname_multiline.svg")
-            .replace("{{firstLineFontSize}}", firstLineFontSize)
-            .replace("{{secondLineFontSize}}", secondLineFontSize)
+            .replace("{{firstLineFontSize}}", unifiedFontSize)
+            .replace("{{secondLineFontSize}}", unifiedFontSize)
             .replace("{{firstLine}}", firstLine)
             .replace("{{secondLine}}", secondLine);
     }
