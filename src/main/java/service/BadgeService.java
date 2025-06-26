@@ -10,12 +10,10 @@ public class BadgeService {
 
     private static final BadgeService BADGE_SERVICE = new BadgeService();
 
-    private final ProgrammersApiClient apiClient = ProgrammersApiClient.getApiClient();
-    private final SvgTemplateLoader svgTemplateLoader = SvgTemplateLoader.getTemplateLoader();
-    private final CardRenderer cardRenderer = CardRenderer.getCardRenderer();
-    private final SvgFileWriter svgFileWriter = SvgFileWriter.getFileWriter();
+    private static final String OUTPUT_FILE_PATH = "output/result.svg";
 
-    private final String OUTPUT_FILE_PATH = "output/result.svg";
+    private final ProgrammersApiClient apiClient = ProgrammersApiClient.getApiClient();
+    private final CardRenderer cardRenderer = CardRenderer.getCardRenderer();
 
     private BadgeService() {}
 
@@ -31,9 +29,10 @@ public class BadgeService {
             return;
         }
 
-        String template = svgTemplateLoader.loadTemplate("badge_base.svg");
+        String template = SvgTemplateLoader.loadTemplate("badge_base.svg");
         String svg = cardRenderer.renderBadge(userDto, template);
 
-        svgFileWriter.writeToFile(svg, OUTPUT_FILE_PATH);
+        SvgFileWriter.writeToFile(svg, OUTPUT_FILE_PATH);
     }
-} 
+
+}

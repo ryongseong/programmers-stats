@@ -6,8 +6,6 @@ public class NicknameRenderer {
 
     private static final NicknameRenderer nicknameRenderer = new NicknameRenderer();
 
-    private final SvgTemplateLoader TEMPLATE_LOADER = SvgTemplateLoader.getTemplateLoader();
-
     private static final int MAX_KOREAN_LENGTH = 4;
     private static final int MAX_NON_KOREAN_LENGTH = 8;
     private static final double FONT_SIZE_BASE = 1.35;
@@ -40,7 +38,7 @@ public class NicknameRenderer {
     }
 
     private String renderSinglelineNickname(String nickname, String fontSize, int length) {
-        String template = TEMPLATE_LOADER.loadTemplate("nickname_singleline.svg");
+        String template = SvgTemplateLoader.loadTemplate("nickname_singleline.svg");
 
         return template
             .replace("{{y}}", "48")
@@ -52,7 +50,7 @@ public class NicknameRenderer {
         int splitIdx = hasKorean ? MAX_KOREAN_LENGTH : MAX_NON_KOREAN_LENGTH;
         String firstLine = nickname.substring(0, splitIdx);
         String secondLine = nickname.substring(splitIdx);
-        String template = TEMPLATE_LOADER.loadTemplate("nickname_multiline.svg");
+        String template = SvgTemplateLoader.loadTemplate("nickname_multiline.svg");
 
         return template
             .replace("{{fontSize}}", fontSize)

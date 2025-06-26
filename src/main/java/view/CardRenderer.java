@@ -10,13 +10,12 @@ public class CardRenderer {
 
     private static final CardRenderer CARD_RENDERER = new CardRenderer();
 
-    private final SvgTemplateLoader TEMPLATE_LOADER = SvgTemplateLoader.getTemplateLoader();
-    private final NicknameRenderer NICKNAME_RENDERER = NicknameRenderer.getNicknameRenderer();
+    private static final int GOLD_LEVEL_THRESHOLD = 5;
+    private static final int GOLD_SCORE_THRESHOLD = 1600;
+    private static final int GOLD_SOLVED_THRESHOLD = 333;
+    private static final int GOLD_RANK_THRESHOLD = 1000;
 
-    private final int GOLD_LEVEL_THRESHOLD = 5;
-    private final int GOLD_SCORE_THRESHOLD = 1600;
-    private final int GOLD_SOLVED_THRESHOLD = 333;
-    private final int GOLD_RANK_THRESHOLD = 1000;
+    private final NicknameRenderer NICKNAME_RENDERER = NicknameRenderer.getNicknameRenderer();
 
     private CardRenderer() {}
 
@@ -26,10 +25,10 @@ public class CardRenderer {
 
     private String getGradientByLevel(int level) {
         String fileName = "gradation_level" + level + ".svg";
-        String gradation = TEMPLATE_LOADER.loadTemplate(fileName);
+        String gradation = SvgTemplateLoader.loadTemplate(fileName);
 
         if (gradation == null) {
-            String fallback = TEMPLATE_LOADER.loadTemplate("gradation_default.svg");
+            String fallback = SvgTemplateLoader.loadTemplate("gradation_default.svg");
             return fallback == null ? "" : fallback;
         }
 
@@ -38,17 +37,17 @@ public class CardRenderer {
 
     private String loadLevelBarsTemplate(int level) {
         String fileName = "level" + level + "_bars.svg";
-        String bars = TEMPLATE_LOADER.loadTemplate(fileName);
+        String bars = SvgTemplateLoader.loadTemplate(fileName);
 
         return bars == null ? "" : bars;
     }
 
     private String loadShieldTemplate(int level) {
         if (level == 4) {
-            String shield = TEMPLATE_LOADER.loadTemplate("level4_shield.svg");
+            String shield = SvgTemplateLoader.loadTemplate("level4_shield.svg");
             return shield == null ? "" : shield;
         } else if (level == 5) {
-            String shield = TEMPLATE_LOADER.loadTemplate("level5_shield.svg");
+            String shield = SvgTemplateLoader.loadTemplate("level5_shield.svg");
             return shield == null ? "" : shield;
         }
 
@@ -62,7 +61,7 @@ public class CardRenderer {
         if (level >= GOLD_LEVEL_THRESHOLD && score >= GOLD_SCORE_THRESHOLD &&
             solved >= GOLD_SOLVED_THRESHOLD && rank <= GOLD_RANK_THRESHOLD) {
 
-            String diamond = TEMPLATE_LOADER.loadTemplate("level5_diamond.svg");
+            String diamond = SvgTemplateLoader.loadTemplate("level5_diamond.svg");
             return diamond == null ? "" : diamond;
         }
 
