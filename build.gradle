@@ -36,5 +36,5 @@ test {
 }
 
 application {
-    mainClass = 'ProgrammersBadgeGenerator'
+    mainClass = 'ProgrammersStats'
 }

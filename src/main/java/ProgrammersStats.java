@@ -1,6 +1,6 @@
 import service.BadgeService;
 
-public class ProgrammersBadgeGenerator {
+public class ProgrammersStats {
 
     private static final BadgeService badgeService = BadgeService.getBadgeService();
 
