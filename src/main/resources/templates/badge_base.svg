@@ -7,6 +7,9 @@
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#e0eaff" flood-opacity="0.9"/>
     </filter>
+    <filter id="goldGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#ffd700" flood-opacity="0.8"/>
+    </filter>
     <style>
       .card-bg { stroke: #dbe3ec; stroke-width: 1; rx: 14; }
       .header { font-size: 1.25rem; font-weight: bold; fill: #fff; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; alignment-baseline: middle; }
@@ -14,6 +17,7 @@
       .nickname { font-weight: bold; fill: #fff; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; }
       .info-label { font-size: 1.02rem; fill: #fff; font-family: inherit; font-weight: 500; }
       .desc { fill: #fff; font-size: 1.12rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.95; }
+      .desc-gold { fill: #ffd700; font-size: 1.12rem; font-weight: bold; font-family: inherit; animation: twinkling 2.5s ease-in-out infinite; opacity: 0.95; filter: url(#goldGlow); }
       .desc-2 { fill: #fff; font-size: 0.98rem; font-weight: bold; font-family: inherit; opacity: 0.7; }
       .level-v { fill: none; stroke: #fff; stroke-width: 8; stroke-linecap: round; opacity: 0.95; }
       .level-v-glow { fill: none; stroke: #e0eaff; stroke-width: 16; stroke-linecap: round; opacity: 0.55; filter: url(#glow); }
@@ -30,16 +34,16 @@
     {{diamond}}
     {{nicknameSvg}}
     <text x="90" y="90" class="info-label" text-anchor="end">Level</text>
-    <text x="120" y="90" class="desc">{{level}}</text>
+    <text x="120" y="90" class="{{levelClass}}" text-anchor="start">{{level}}</text>
     <text x="200" y="90" class="desc-2" text-anchor="start">level</text>
     <text x="90" y="120" class="info-label" text-anchor="end">Rate</text>
-    <text x="120" y="120" class="desc">{{score}}</text>
+    <text x="120" y="120" class="{{scoreClass}}" text-anchor="start">{{score}}</text>
     <text x="200" y="120" class="desc-2" text-anchor="start">pt</text>
     <text x="90" y="150" class="info-label" text-anchor="end">Solved</text>
-    <text x="120" y="150" class="desc">{{solved}}</text>
+    <text x="120" y="150" class="{{solvedClass}}" text-anchor="start">{{solved}}</text>
     <text x="200" y="150" class="desc-2" text-anchor="start">problems</text>
     <text x="90" y="180" class="info-label" text-anchor="end">Rank</text>
-    <text x="120" y="180" class="desc">{{rank}}</text>
+    <text x="120" y="180" class="{{rankClass}}" text-anchor="start">{{rank}}</text>
     <text x="200" y="180" class="desc-2" text-anchor="start">{{rankSuffix}}</text>
   </g>
 </svg> 
