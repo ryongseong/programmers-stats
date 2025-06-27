@@ -33,71 +33,123 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
 
 <details>
 <summary>
-   🔍 View Example
+   🔍 View Detail
 </summary>
+<br>
+<table align="center">
+<tr>
+<td width="50%" align="center">
+<img src="./readme-assets/project_setup_step1.png" alt="Project setup step1" /> </td>
+<td width="50%" align="center">
+<img src="./readme-assets/project_setup_step2.png" alt="Project setup step2" /> </td>
+</tr>
+</table>
 </details>
 
-#### 2️⃣ 포크한 레포지토리의 "Actions" 탭으로 이동해 "Enable" 버튼을 클릭합니다.
+#### 2️⃣ 포크한 레포지토리의 환경 변수를 등록합니다.
+
+<a name="project-setting-2"></a>
 
 <details>
-<summary>
-   🔍 View Example
-</summary>
-</details>
-
-#### 3️⃣ 환경 변수를 등록합니다.
-
-- 레포지토리 Settings > Secrets and variables > Actions 로 이동하여 아래 값을 등록합니다.
-
-  - `GH_PAT`: GitHub Personal Access Token
-  - `PROGRAMMERS_TOKEN_ID`: 프로그래머스 계정 이메일
-  - `PROGRAMMERS_TOKEN_PW`: 프로그래머스 계정 비밀번호
-
-<details>
-<summary>
-   🔍 View Example
-</summary>
-</details>
-
-#### 4️⃣ 배지가 정상적으로 생성되었는지 확인합니다.
-
-- 포크한 레포지토리의 `result` 폴더에 `result.svg` 파일이 생성되어 있는지 확인하고,  
-   자신의 프로그래머스 정보와 일치하는지 확인합니다.
-
-<details>
-<summary>
-   🔍 View Example
-</summary>
-</details>
-
-#### 5️⃣ GitHub 프로필에 프로그래머스 배지를 등록합니다.
-
-- GitHub 프로필에 해당하는 레포지토리의 `README.md` 파일에 다음 코드를 삽입하세요:
-
-  ```
-  ![Programmers Badge](https://raw.githubusercontent.com/{your-github-id}/programmers-stats/main/output/result.svg)
-  ```
-
-<details>
-<summary>
-   🔍 View Example
-</summary>
-</details>
-
-#### 6️⃣
+<summary>🔍 View Detail</summary>
 
 <br>
+<blockquote>⚠️ <strong>GitHub Personal Access Token 생성이 선행되어야 합니다!</strong> <br>
+<a href="https://docs.github.com/ko/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-token-classic-만들기">🔗 Token 생성 방법 - 공식 문서</a></blockquote> <br>
+
+<ul>
+  <li>
+    레포지토리 <strong>Settings > Secrets and variables > Actions</strong> 로 이동하여 아래 값을 등록합니다:
+    <ul>
+      <li><code>GH_PAT</code>: GitHub Personal Access Token</li>
+      <li><code>PROGRAMMERS_TOKEN_ID</code>: 프로그래머스 계정 이메일</li>
+      <li><code>PROGRAMMERS_TOKEN_PW</code>: 프로그래머스 계정 비밀번호</li>
+    </ul>
+  </li>
+</ul> <br>
+
+<img src="./readme-assets/project_setup_step3.png" alt="Project setup step3" />
+</details>
+
+#### 3️⃣ `Actions` 탭으로 이동해 `enable` 버튼을 클릭합니다.
+
+<details>
+<summary>
+   🔍 View Detail
+</summary>
+<br>
+<img src="./readme-assets/project_setup_step4.png" alt="Project setup step4" />
+</details>
+
+#### 4️⃣ output/result.svg 파일을 삭제합니다.
+
+<details>
+<summary>
+   🔍 View Detail
+</summary>
+<br>
+<img src="./readme-assets/project_setup_step5.png" alt="Project setup step5" />
+</details>
+
+#### 5️⃣ 배지가 정상적으로 재생성되었는지 확인합니다.
+
+<details>
+<summary>
+   🔍 View Detail
+</summary>
+<br>
+<blockquote>
+ ✅ Action이 완료된 후, 배지가 정상적으로 재생성되었는지 확인하세요. <br>
+ (⏳ 약 <strong>10초 정도</strong> 소요될 수 있습니다.) <br><br>
+ ⚠️ <strong>변경된 배지가 보이지 않는다면 브라우저를 새로고침(F5) 해보세요.</strong> <br>
+ 🔁 여전히 반영되지 않는다면, <a href="#project-setting-2">설정 2️⃣</a>로 돌아가 환경 변수를 다시 입력한 후 <a href="#manual-refresh">🔄 배지 수동 갱신</a> 항목을 참고해 수동으로 갱신을 진행해주세요.
+</blockquote>
+<br>
+<li>아래 이미지와 같이 <strong>본인의 커밋 메시지와는 다른 커밋</strong>이 자동으로 생성되었다면,  
+   배지가 성공적으로 재생성된 것입니다.</li>
+<li>레포지토리의 <code>output</code> 폴더에 <code>result.svg</code> 파일이 재생성되어 있는지 확인하고,  
+   자신의 프로그래머스 정보와 일치하는지 확인합니다. </li> <br>
+
+<img src="./readme-assets/project_setup_step6.png" alt="Project setup step6" />
+</details>
+
+#### 6️⃣ GitHub 프로필에 프로그래머스 배지를 등록합니다.
+
+<details>
+<summary>
+   🔍 View Detail
+</summary>
+<br>
+<li> GitHub 프로필에 해당하는 레포지토리의 <code>README.md</code> 파일에 다음 코드를 삽입하세요: </li>
+<blockquote>⚠️ <strong><code>{your-github-id}</code></strong> 부분은 반드시 <strong>본인의 GitHub 사용자명</strong>으로 교체해야 합니다.</blockquote> <br>
+   <pre><code>![Programmers Badge](https://raw.githubusercontent.com/{your-github-id}/programmers-stats/main/output/result.svg)</code></pre>
+
+<strong>ex)</strong> GitHub 사용자명이 <code>gyudol</code>일 경우:
+
+  <pre><code>![Programmers Badge](https://raw.githubusercontent.com/gyudol/programmers-stats/main/output/result.svg)</code></pre>
+  </details>
+  <br>
 
 ## 🔄 배지 수동 갱신
+
+<a name="manual-refresh"></a>
 
 배지를 수동으로 갱신하고 싶다면, 포크한 레포지토리의 **Actions** 탭으로 이동하여  
 가장 최근에 실행된 워크플로우를 선택한 후 우측 상단의 **Re-run jobs** 버튼을 클릭하세요.
 
+> ⚠️ 프로그래머스 통계에 변화가 없을 경우, 워크플로우가 실패로 표시되며 배지는 갱신되지 않습니다.
+
 <details>
 <summary>
-   🔍 View Example
+   🔍 View Detail
 </summary>
-</details>
 <br>
-
-> ⚠️ 프로그래머스 통계에 변화가 없을 경우, 워크플로우가 실패로 표시되며 배지는 갱신되지 않습니다.
+<table align="center">
+<tr>
+<td width="50%" align="center">
+<img src="./readme-assets/badge_manual_refresh_step1.png" alt="Badge manual-refresh step1" /> </td>
+<td width="50%" align="center">
+<img src="./readme-assets/badge_manual_refresh_step2.png" alt="Badge manual-refresh step2" /> </td>
+</tr>
+</table>
+</details>
