@@ -35,7 +35,7 @@
 <polyline class='level-v' points='295,122 320,144 345,122'/> 
     
     
-    <text x="320" y="48" class="nickname desc" text-anchor="middle" style="font-size:1.35rem;">gyudol</text>
+    <text x="320" y="48" class="nickname desc" text-anchor="middle" style="font-size:1.20rem;">gyudol</text>
     <text x="90" y="90" class="info-label" text-anchor="end">Level</text>
     <text x="120" y="90" class="desc" text-anchor="start">2</text>
     <text x="200" y="90" class="desc-2" text-anchor="start">level</text>
@@ -46,7 +46,7 @@
     <text x="120" y="150" class="desc" text-anchor="start">105</text>
     <text x="200" y="150" class="desc-2" text-anchor="start">problems</text>
     <text x="90" y="180" class="info-label" text-anchor="end">Rank</text>
-    <text x="120" y="180" class="desc" text-anchor="start">27,533</text>
-    <text x="200" y="180" class="desc-2" text-anchor="start">rd</text>
+    <text x="120" y="180" class="desc" text-anchor="start">27,538</text>
+    <text x="200" y="180" class="desc-2" text-anchor="start">th</text>
   </g>
 </svg> 
