@@ -94,7 +94,7 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
 <br>
 <blockquote>
  ✅ Action이 완료된 후, 배지가 정상적으로 재생성되었는지 확인하세요. <br>
- (⏳ 약 <strong>10초 정도</strong> 소요될 수 있습니다.) <br><br>
+ (⏳ 약 <strong>30초 정도</strong> 소요될 수 있습니다.) <br><br>
  ⚠️ <strong>변경된 배지가 보이지 않는다면 브라우저를 새로고침(F5) 해보세요.</strong> <br>
  🔁 여전히 반영되지 않는다면, <a href="#project-setting-2">설정 2️⃣</a>로 돌아가 환경 변수를 다시 입력한 후 <a href="#manual-refresh">🔄 배지 수동 갱신</a> 항목을 참고해 수동으로 갱신을 진행해주세요.
 </blockquote>
@@ -131,7 +131,7 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
 배지를 수동으로 갱신하고 싶다면, 포크한 레포지토리의 **Actions** 탭으로 이동하여  
 가장 최근에 실행된 워크플로우를 선택한 후 우측 상단의 **Re-run jobs** 버튼을 클릭하세요.
 
-> ⚠️ 프로그래머스 통계에 변화가 없을 경우, 배지는 갱신되지 않습니다.
+> ⚠️ 프로그래머스 통계에 변화가 없을 경우, 워크플로우가 실패로 표시되며 배지는 갱신되지 않습니다.
 
 <details>
 <summary>
