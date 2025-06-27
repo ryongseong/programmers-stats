@@ -36,14 +36,8 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
    🔍 View Detail
 </summary>
 <br>
-<table align="center">
-<tr>
-<td width="50%" align="center">
-<img src="./readme-assets/project_setup_step1.png" alt="Project setup step1" /> </td>
-<td width="50%" align="center">
-<img src="./readme-assets/project_setup_step2.png" alt="Project setup step2" /> </td>
-</tr>
-</table>
+<img src="./readme-assets/project_setup_step1.png" alt="Project setup step1" />
+<img src="./readme-assets/project_setup_step2.png" alt="Project setup step2" />
 </details>
 
 #### 2️⃣ 포크한 레포지토리의 환경 변수를 등록합니다.
@@ -144,12 +138,6 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
    🔍 View Detail
 </summary>
 <br>
-<table align="center">
-<tr>
-<td width="50%" align="center">
-<img src="./readme-assets/badge_manual_refresh_step1.png" alt="Badge manual-refresh step1" /> </td>
-<td width="50%" align="center">
-<img src="./readme-assets/badge_manual_refresh_step2.png" alt="Badge manual-refresh step2" /> </td>
-</tr>
-</table>
+<img src="./readme-assets/badge_manual_refresh_step1.png" alt="Badge manual-refresh step1" />
+<img src="./readme-assets/badge_manual_refresh_step2.png" alt="Badge manual-refresh step2" />
 </details>
