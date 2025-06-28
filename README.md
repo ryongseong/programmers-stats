@@ -1,7 +1,12 @@
 # 🔰 Programmers Stats
 
-GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 현황을 한눈에!** 자동 갱신되는 배지 생성 프로젝트<br>
-프로그래머스에서 푼 문제 실적을 GitHub 프로필에 배지 형태로 시각화해줍니다. 배지는 **매주 자동으로 갱신**되며, 원버튼 수동 갱신도 지원합니다.<br><br>
+GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 현황을 한눈에!** <br>
+프로그래머스 문제 풀이 실적을 시각화한 **SVG 배지**를 생성해주는 프로젝트입니다. <br>
+생성된 배지는 GitHub 프로필에 삽입할 수 있으며, **매주 자동으로 갱신**되고 **수동 갱신**도 지원합니다.<br>
+
+> 💬 프로젝트에 대한 문의나 개선 제안이 있다면, [Issues](https://github.com/gyudol/programmers-stats/issues)와 [Pull Requests](https://github.com/gyudol/programmers-stats/pulls)를 통해 남겨주세요.
+
+<br>
 
 ## ♻️ 디자인 리빌딩 및 절차 간소화
 
