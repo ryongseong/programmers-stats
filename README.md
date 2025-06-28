@@ -105,6 +105,8 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
    자신의 프로그래머스 정보와 일치하는지 확인합니다. </li> <br>
 
 <img src="./readme-assets/project_setup_step6.png" alt="Project setup step6" />
+
+<blockquote>💡 <strong>이후로는 매주 월요일 자정에 배지가 자동으로 갱신됩니다.</strong></blockquote>
 </details>
 
 #### 6️⃣ GitHub 프로필에 프로그래머스 배지를 등록합니다.
@@ -128,16 +130,15 @@ GitHub에서 **[프로그래머스](https://programmers.co.kr/) 문제 풀이 �
 
 <a name="manual-refresh"></a>
 
-배지를 수동으로 갱신하고 싶다면, 포크한 레포지토리의 **Actions** 탭으로 이동하여  
-가장 최근에 실행된 워크플로우를 선택한 후 우측 상단의 **Re-run jobs** 버튼을 클릭하세요.
+배지를 수동으로 갱신하고 싶다면, 포크한 레포지토리의 **Actions** 탭으로 이동한 뒤,
+좌측 상단의 `Programmers Badge Generation`을 선택하고 우측의 **Run workflow** 버튼을 클릭하세요.
 
-> ⚠️ 프로그래머스 통계에 변화가 없을 경우, 워크플로우가 실패로 표시되며 배지는 갱신되지 않습니다.
+> ⚠️ 프로그래머스 통계에 변화가 없을 경우, 배지는 갱신되지 않습니다.
 
 <details>
 <summary>
    🔍 View Detail
 </summary>
 <br>
-<img src="./readme-assets/badge_manual_refresh_step1.png" alt="Badge manual-refresh step1" />
-<img src="./readme-assets/badge_manual_refresh_step2.png" alt="Badge manual-refresh step2" />
+<img src="./readme-assets/badge_manual_refresh_step.png" alt="Badge manual-refresh step" />
 </details>
