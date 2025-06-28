@@ -1,5 +1,5 @@
 ---
-name: '💬 Question Template'
+name: '💬 Question'
 about: '기능 문의, 사용 방법, 기타 질문 등을 등록하는 템플릿입니다. (괄호) 항목은 모두 지우고 작성해주세요.'
 title: '💬 (문의 제목)'
 labels: ['question']
